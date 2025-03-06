@@ -1,22 +1,16 @@
-import { useState } from "react";
 import Task from "./Task";
-import { initialTasks } from '../data/initialTasks'
+import { useTasks } from "../context/TasksContext";
 
-export default function TaskList(){
-    const [ task, setTasks] =useState(initialTasks);
+export default function TaskList() {
+  const { tasks } = useTasks();
 
-
-    return (
-        
-        <ul>
-           { task.map((task) =>
-         <li key={task.id}>
-         <Task task={ task}/>
-        </li> 
-
-        )}
-        </ul>
-        
-    );
+  return (
+    <ul>
+      {tasks.map((task) => (
+        <li key={task.id}>
+          <Task task={task} />
+        </li>
+      ))}
+    </ul>
+  );
 }
-

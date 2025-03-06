@@ -1,18 +1,26 @@
+import { useState } from "react";
+import { useTasks } from "../context/TasksContext";
+
 export default function AddTask() {
+  const [text, setText] = useState("");
+  const { onAddTask } = useTasks();
+
   return (
     <>
-      <input type="text" placeholder="Add Task" />
-      <button> Add</button>
-      <button> Delete</button>
-      <button> Delete</button>
-      <p>
-        {" "}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-        itaque maiores facere a quod aperiam distinctio temporibus, enim, rem
-        voluptatibus ab perspiciatis praesentium dolores consequatur quibusdam
-        tenetur similique. Voluptas, consectetur!
-      </p>
-      <button> Delete</button>
+      <input
+        type="text"
+        placeholder="Add Task"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          setText("");
+          onAddTask(text);
+        }}
+      >
+        Add
+      </button>
     </>
   );
 }
